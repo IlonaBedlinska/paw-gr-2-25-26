@@ -58,15 +58,24 @@ class Book(models.Model):
 
 
 class Osoba(models.Model):
-    PLEC_WYBOR = (
-        ("K", "kobieta" ),
-        ("M","mezczyzna"),
-        ("I","inna")
-    )
+    #PLEC_WYBOR = (
+     #   ("K", "kobieta" ),
+      #  ("M","mezczyzna"),
+       # ("I","inna")
+    #)
+    class Plec(models.IntegerChoices):
+        MEZCZYZNA = 1
+        KOBIETA = 2
+        INNA = 3
+
+    
+
     imie = models.CharField(max_length = 50, null = False, blank = False)
     nazwisko = models.CharField(max_length = 50, null = False, blank = False)
-    plec = models.CharField(max_length = 1, choices = PLEC_WYBOR, default = "I")
+    plec = models.IntegerField(choices=Plec.choices, default=3)
+    #plec = models.CharField(max_length = 1, choices = PLEC_WYBOR, default = "I")
     stanowisko = models.ForeignKey('Stanowisko', on_delete = models.CASCADE)
+    data_dodania = models.DateField(auto_now_add=True, editable = False)
 
 class Stanowisko(models.Model):
     nazwa = models.CharField(max_length = 70, null = False, blank = False)
