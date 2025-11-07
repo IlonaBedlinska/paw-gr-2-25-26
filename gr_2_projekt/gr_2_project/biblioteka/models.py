@@ -57,18 +57,19 @@ class Book(models.Model):
         return self.title
 
 
+
+class Plec(models.IntegerChoices):
+        MEZCZYZNA = 1
+        KOBIETA = 2
+        INNA = 3
+
+
 class Osoba(models.Model):
     #PLEC_WYBOR = (
      #   ("K", "kobieta" ),
       #  ("M","mezczyzna"),
        # ("I","inna")
     #)
-    class Plec(models.IntegerChoices):
-        MEZCZYZNA = 1
-        KOBIETA = 2
-        INNA = 3
-
-    
 
     imie = models.CharField(max_length = 50, null = False, blank = False)
     nazwisko = models.CharField(max_length = 50, null = False, blank = False)
